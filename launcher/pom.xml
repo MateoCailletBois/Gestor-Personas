@@ -9,13 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>persistencia</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.desitsa</groupId>
-            <artifactId>aplicacion</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
+    <artifactId>launcher</artifactId>
+
 
 </project>

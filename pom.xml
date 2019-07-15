@@ -10,9 +10,10 @@
 
     <packaging>pom</packaging>
     <modules>
-        <module>persistencia</module>
+        <module>comunicacion</module>
         <module>aplicacion</module>
         <module>presentacion</module>
+        <module>launcher</module>
     </modules>
 
     <properties>
