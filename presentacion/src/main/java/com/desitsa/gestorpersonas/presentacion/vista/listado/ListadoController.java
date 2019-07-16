@@ -22,10 +22,10 @@ public class ListadoController implements Initializable {
     private DataModel dataModel;
     private GestorPersona gestorPersona;
 
-    public ListadoController(DataModel dataModel, GestorPersona gestorPersona) {
-        this.dataModel = dataModel;
-        this.gestorPersona = gestorPersona;
-    }
+//    public ListadoController(DataModel dataModel, GestorPersona gestorPersona) {
+//        this.dataModel = dataModel;
+//        this.gestorPersona = gestorPersona;
+//    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,25 +35,25 @@ public class ListadoController implements Initializable {
 
     //******************************( METODOS PRIVADOS )******************************
     private void iniciarDataModel() {
-        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
-        List<Persona> listaPersonas = new ArrayList<>();
-        for (PersonaDTO personaDTO : gestorPersona.obtenerTodas())
-            listaPersonas.add(mapper.map(personaDTO, Persona.class));
-        dataModel.setListaPersonas(listaPersonas);
+//        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
+//        List<Persona> listaPersonas = new ArrayList<>();
+//        for (PersonaDTO personaDTO : gestorPersona.obtenerTodas())
+//            listaPersonas.add(mapper.map(personaDTO, Persona.class));
+//        dataModel.setListaPersonas(listaPersonas);
     }
 
     private void bindDataModel() {
-        lvPersona.setItems(dataModel.getListaPersonas());
-        lvPersona.getSelectionModel().selectedItemProperty().addListener((obs, personaAnterior, personaActual) -> dataModel.setPersonaSeleccionada(personaActual));
-        lvPersona.setCellFactory(lvPersona -> new ListCell<Persona>() {
-            @Override
-            public void updateItem(Persona persona, boolean empty) {
-                super.updateItem(persona, empty);
-                if (empty || persona == null)
-                    setText(null);
-                else
-                    setText(persona.getNombre() + " " + persona.getApellido());
-            }
-        });
+//        lvPersona.setItems(dataModel.getListaPersonas());
+//        lvPersona.getSelectionModel().selectedItemProperty().addListener((obs, personaAnterior, personaActual) -> dataModel.setPersonaSeleccionada(personaActual));
+//        lvPersona.setCellFactory(lvPersona -> new ListCell<Persona>() {
+//            @Override
+//            public void updateItem(Persona persona, boolean empty) {
+//                super.updateItem(persona, empty);
+//                if (empty || persona == null)
+//                    setText(null);
+//                else
+//                    setText(persona.getNombre() + " " + persona.getApellido());
+//            }
+//        });
     }
 }

@@ -21,20 +21,20 @@ public class EditorController implements Initializable {
     private DataModel dataModel;
     private GestorPersona gestorPersona;
 
-    public EditorController(DataModel dataModel, GestorPersona gestorPersona) {
-        this.dataModel = dataModel;
-        this.gestorPersona = gestorPersona;
-    }
+//    public EditorController(DataModel dataModel, GestorPersona gestorPersona) {
+//        this.dataModel = dataModel;
+//        this.gestorPersona = gestorPersona;
+//    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        dataModel.personaSeleccionadaProperty().addListener((obs, personaAnterior, personaActual) -> {
-            if (personaActual == null) {
-               limpiarCampos();
-            } else {
-               llenarCampos();
-            }
-        });
+//        dataModel.personaSeleccionadaProperty().addListener((obs, personaAnterior, personaActual) -> {
+//            if (personaActual == null) {
+//               limpiarCampos();
+//            } else {
+//               llenarCampos();
+//            }
+//        });
     }
 
     //******************************( METODOS PRIVADOS )******************************
