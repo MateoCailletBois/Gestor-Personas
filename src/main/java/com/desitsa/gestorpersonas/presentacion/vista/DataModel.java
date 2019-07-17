@@ -6,16 +6,27 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.List;
 
+@Singleton
 public class DataModel {
 
     private final ObservableList<Persona> listaPersonas = FXCollections.observableArrayList();
     private final ObjectProperty<Persona> personaSeleccionada = new SimpleObjectProperty<>(null);
 
+    @Inject
+    public DataModel() {
+
+    }
+
     //******************************( METODOS PUBLICOS )******************************
-    public void removerPersona(Persona persona) {
+    public void removerPersona(Persona persona) throws RuntimeException {
         listaPersonas.remove(persona);
+    }
+    public void agregarPersona(Persona persona) throws RuntimeException {
+        listaPersonas.add(persona);
     }
 
     //******************************( GETTER )******************************

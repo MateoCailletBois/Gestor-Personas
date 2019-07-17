@@ -3,6 +3,7 @@ package com.desitsa.gestorpersonas.comunicacion;
 import com.desitsa.gestorpersonas.aplicacion.IPersonaEndPoint;
 import com.desitsa.gestorpersonas.aplicacion.PersonaDTO;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,18 +11,23 @@ public class PersonaEndPoint implements IPersonaEndPoint {
 
     private static List<PersonaDTO> listaPersonas;
 
+    @Inject
+    public PersonaEndPoint() {
+
+    }
+
     //******************************( METODOS PUBLICOS )******************************
-    public List<PersonaDTO> getAll() {
+    public List<PersonaDTO> getAll() throws RuntimeException {
         if (listaPersonas == null)
             iniciarLista();
         return listaPersonas;
     }
 
-    public void save(PersonaDTO persona) {
+    public void save(PersonaDTO persona) throws RuntimeException {
         listaPersonas.add(persona);
     }
 
-    public void update(PersonaDTO personaActualizada) {
+    public void update(PersonaDTO personaActualizada) throws RuntimeException {
         for (PersonaDTO persona : listaPersonas) {
             if (persona.getId() == persona.getId()) {
                 listaPersonas.remove(persona);
@@ -30,7 +36,7 @@ public class PersonaEndPoint implements IPersonaEndPoint {
         }
     }
 
-    public void delete(PersonaDTO persona) {
+    public void delete(PersonaDTO persona) throws RuntimeException {
         PersonaDTO persona_a_eliminar = null;
         for (PersonaDTO p : listaPersonas) {
             if (p.getId() == persona.getId())
@@ -40,7 +46,7 @@ public class PersonaEndPoint implements IPersonaEndPoint {
     }
 
     //******************************( METODOS PRIVADOS )******************************
-    private  void iniciarLista() {
+    private  void iniciarLista() throws RuntimeException {
         listaPersonas = new ArrayList<>();
         listaPersonas.add(new PersonaDTO(1,"Mateo", "Baudino", 37732758));
         listaPersonas.add(new PersonaDTO(2,"Julian", "Gautier", 36547895));

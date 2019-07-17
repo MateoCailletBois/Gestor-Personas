@@ -1,6 +1,6 @@
 package com.desitsa.gestorpersonas.presentacion.vista.listado;
 
-import com.desitsa.gestorpersonas.aplicacion.GestorPersona;
+import com.desitsa.gestorpersonas.aplicacion.IGestorPersona;
 import com.desitsa.gestorpersonas.aplicacion.PersonaDTO;
 import com.desitsa.gestorpersonas.presentacion.viewmodel.Persona;
 import com.desitsa.gestorpersonas.presentacion.vista.DataModel;
@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 
+import javax.inject.Inject;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +21,13 @@ public class ListadoController implements Initializable {
 
     @FXML private ListView<Persona> lvPersona;
     private DataModel dataModel;
-    private GestorPersona gestorPersona;
+    private IGestorPersona gestorPersona;
 
-//    public ListadoController(DataModel dataModel, GestorPersona gestorPersona) {
-//        this.dataModel = dataModel;
-//        this.gestorPersona = gestorPersona;
-//    }
+    @Inject
+    public ListadoController(DataModel dataModel, IGestorPersona gestorPersona) {
+        this.dataModel = dataModel;
+        this.gestorPersona = gestorPersona;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,25 +37,25 @@ public class ListadoController implements Initializable {
 
     //******************************( METODOS PRIVADOS )******************************
     private void iniciarDataModel() {
-//        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
-//        List<Persona> listaPersonas = new ArrayList<>();
-//        for (PersonaDTO personaDTO : gestorPersona.obtenerTodas())
-//            listaPersonas.add(mapper.map(personaDTO, Persona.class));
-//        dataModel.setListaPersonas(listaPersonas);
+        Mapper mapper = DozerBeanMapperBuilder.buildDefault();
+        List<Persona> listaPersonas = new ArrayList<>();
+        for (PersonaDTO personaDTO : gestorPersona.obtenerTodas())
+            listaPersonas.add(mapper.map(personaDTO, Persona.class));
+        dataModel.setListaPersonas(listaPersonas);
     }
 
     private void bindDataModel() {
-//        lvPersona.setItems(dataModel.getListaPersonas());
-//        lvPersona.getSelectionModel().selectedItemProperty().addListener((obs, personaAnterior, personaActual) -> dataModel.setPersonaSeleccionada(personaActual));
-//        lvPersona.setCellFactory(lvPersona -> new ListCell<Persona>() {
-//            @Override
-//            public void updateItem(Persona persona, boolean empty) {
-//                super.updateItem(persona, empty);
-//                if (empty || persona == null)
-//                    setText(null);
-//                else
-//                    setText(persona.getNombre() + " " + persona.getApellido());
-//            }
-//        });
+        lvPersona.setItems(dataModel.getListaPersonas());
+        lvPersona.getSelectionModel().selectedItemProperty().addListener((obs, personaAnterior, personaActual) -> dataModel.setPersonaSeleccionada(personaActual));
+        lvPersona.setCellFactory(lvPersona -> new ListCell<Persona>() {
+            @Override
+            public void updateItem(Persona persona, boolean empty) {
+                super.updateItem(persona, empty);
+                if (empty || persona == null)
+                    setText(null);
+                else
+                    setText(persona.getNombre() + " " + persona.getApellido());
+            }
+        });
     }
 }

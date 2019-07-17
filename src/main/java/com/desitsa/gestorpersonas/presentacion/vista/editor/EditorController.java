@@ -1,6 +1,6 @@
 package com.desitsa.gestorpersonas.presentacion.vista.editor;
 
-import com.desitsa.gestorpersonas.aplicacion.GestorPersona;
+import com.desitsa.gestorpersonas.aplicacion.IGestorPersona;
 import com.desitsa.gestorpersonas.aplicacion.PersonaDTO;
 import com.desitsa.gestorpersonas.presentacion.viewmodel.Persona;
 import com.desitsa.gestorpersonas.presentacion.vista.DataModel;
@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
+import javax.inject.Inject;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,28 +20,28 @@ public class EditorController implements Initializable {
     @FXML private TextField tfApellido;
     @FXML private TextField tfDni;
     private DataModel dataModel;
-    private GestorPersona gestorPersona;
+    private IGestorPersona gestorPersona;
 
-//    public EditorController(DataModel dataModel, GestorPersona gestorPersona) {
-//        this.dataModel = dataModel;
-//        this.gestorPersona = gestorPersona;
-//    }
+    @Inject
+    public EditorController(DataModel dataModel, IGestorPersona gestorPersona) {
+        this.dataModel = dataModel;
+        this.gestorPersona = gestorPersona;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        dataModel.personaSeleccionadaProperty().addListener((obs, personaAnterior, personaActual) -> {
-//            if (personaActual == null) {
-//               limpiarCampos();
-//            } else {
-//               llenarCampos();
-//            }
-//        });
+       bindDataModel();
     }
 
     //******************************( METODOS PRIVADOS )******************************
     @FXML
     private void guardar() {
-
+        try {
+            Mapper mapper = DozerBeanMapperBuilder.buildDefault();
+            gestorPersona.guardar(mapper.map(dataModel.getPersonaSeleccionada(), PersonaDTO.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -53,6 +54,16 @@ public class EditorController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void bindDataModel() {
+        dataModel.personaSeleccionadaProperty().addListener((obs, personaAnterior, personaActual) -> {
+            if (personaActual == null) {
+                limpiarCampos();
+            } else {
+                llenarCampos();
+            }
+        });
     }
 
     private void limpiarCampos() {
