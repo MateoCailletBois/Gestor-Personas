@@ -15,11 +15,11 @@ public class ContenedorController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            root.setCenter(FXMLLoader.load(getClass().getResource("listado/Listado.fxml")));
-            root.setRight(FXMLLoader.load(getClass().getResource("editor/Editor.fxml")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            root.setCenter(FXMLLoader.load(getClass().getResource("listado/Listado.fxml")));
+//            root.setRight(FXMLLoader.load(getClass().getResource("editor/Editor.fxml")));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 }

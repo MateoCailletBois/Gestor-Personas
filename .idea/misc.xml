@@ -9,7 +9,8 @@
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/dominio/pom.xml" />
+        <option value="$PROJECT_DIR$/aplicacion/pom.xml" />
+        <option value="$PROJECT_DIR$/comunicacion/pom.xml" />
       </set>
     </option>
   </component>

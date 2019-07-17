@@ -1,4 +1,4 @@
-package com.desitsa.gestorpersonas.persistencia;
+package com.desitsa.gestorpersonas.comunicacion;
 
 import com.desitsa.gestorpersonas.aplicacion.IPersonaEndPoint;
 import com.desitsa.gestorpersonas.aplicacion.PersonaDTO;
