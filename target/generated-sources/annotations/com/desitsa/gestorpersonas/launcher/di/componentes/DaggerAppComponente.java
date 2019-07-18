@@ -79,14 +79,14 @@ public final class DaggerAppComponente implements AppComponente {
     private Stage mainWindow;
 
     @Override
-    public FxAppComponenteBuilder application(Application application) {
-      this.application = Preconditions.checkNotNull(application);
+    public FxAppComponenteBuilder application(Application arg0) {
+      this.application = Preconditions.checkNotNull(arg0);
       return this;
     }
 
     @Override
-    public FxAppComponenteBuilder mainWindow(Stage mainWindow) {
-      this.mainWindow = Preconditions.checkNotNull(mainWindow);
+    public FxAppComponenteBuilder mainWindow(Stage arg0) {
+      this.mainWindow = Preconditions.checkNotNull(arg0);
       return this;
     }
 
@@ -124,7 +124,7 @@ public final class DaggerAppComponente implements AppComponente {
       this.contenedorControllerProvider = ContenedorController_Factory.create(provideFxmlLoaderFactoryProvider);
       this.listadoControllerProvider = ListadoController_Factory.create(DaggerAppComponente.this.dataModelProvider, (Provider) DaggerAppComponente.this.gestorPersonaProvider);
       this.editorControllerProvider = EditorController_Factory.create(DaggerAppComponente.this.dataModelProvider, (Provider) DaggerAppComponente.this.gestorPersonaProvider);
-      this.mapOfClassOfAndProviderOfObjectProvider = MapProviderFactory.<Class<?>, Object>builder(4).put(DataModel.class, (Provider) DaggerAppComponente.this.dataModelProvider).put(ContenedorController.class, (Provider) contenedorControllerProvider).put(ListadoController.class, (Provider) listadoControllerProvider).put(EditorController.class, (Provider) editorControllerProvider).build();
+      this.mapOfClassOfAndProviderOfObjectProvider = MapProviderFactory.<Class<?>, Object>builder(3).put(ContenedorController.class, (Provider) contenedorControllerProvider).put(ListadoController.class, (Provider) listadoControllerProvider).put(EditorController.class, (Provider) editorControllerProvider).build();
       this.provideControllerFactoryProvider = DoubleCheck.provider(FxAppModulo_ProvideControllerFactoryFactory.create(fxAppModuloParam, mapOfClassOfAndProviderOfObjectProvider));
       DelegateFactory.setDelegate(provideFxmlLoaderFactoryProvider, DoubleCheck.provider(FxAppModulo_ProvideFxmlLoaderFactoryFactory.create(fxAppModuloParam, provideControllerFactoryProvider)));
     }

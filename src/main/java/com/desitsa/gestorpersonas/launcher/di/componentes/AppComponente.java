@@ -10,5 +10,4 @@ import javax.inject.Singleton;
 public interface AppComponente {
 
     FxAppComponente.Builder fxApp();
-
 }

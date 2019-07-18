@@ -14,16 +14,15 @@ abstract class FxControllersModulo {
     @Binds
     @IntoMap
     @ClassKey(ContenedorController.class)
-    abstract Object bindContenedorController(ContenedorController ctrl);
+    abstract Object bindContenedorController(ContenedorController contenedorController);
 
     @Binds
     @IntoMap
     @ClassKey(ListadoController.class)
-    abstract Object bindListadoController(ListadoController ctrl);
+    abstract Object bindListadoController(ListadoController listadoController);
 
     @Binds
     @IntoMap
     @ClassKey(EditorController.class)
-    abstract Object bindEditorController(EditorController ctrl);
-
+    abstract Object bindEditorController(EditorController editorController);
 }

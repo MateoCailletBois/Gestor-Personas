@@ -12,12 +12,7 @@ public class Launcher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
-        FxAppComponente fxApp = DaggerAppComponente.create().fxApp()
-                .application(this)
-                .mainWindow(primaryStage)
-                .build();
-
+        FxAppComponente fxApp = DaggerAppComponente.create().fxApp().application(this).mainWindow(primaryStage).build();
         FXMLLoader loader = fxApp.loader((ContenedorController.class).getResource("Contenedor.fxml"));
         primaryStage.setScene(new Scene(loader.load()));
         primaryStage.setMinHeight(400);

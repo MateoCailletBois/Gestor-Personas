@@ -29,6 +29,7 @@
           <entry name="$MAVEN_REPOSITORY$/net/ltgt/gradle/incap/incap/0.2/incap-0.2.jar" />
         </processorPath>
         <module name="gestor-personas" />
+        <module name="Gestor-Personas" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

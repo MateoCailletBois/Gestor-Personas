@@ -16,14 +16,8 @@ import javax.inject.Singleton;
 public abstract class AppModulo {
 
     @Binds
-    @IntoMap
-    @ClassKey(DataModel.class)
-    abstract Object bindDataModel(DataModel dataModel);
+    abstract IGestorPersona bindGestorPersona(GestorPersona gestorPersona);
 
     @Binds
-    abstract IGestorPersona bindGestorPersona(GestorPersona gp);
-
-    @Binds
-    abstract IPersonaEndPoint bindPersonaEndpoint(PersonaEndPoint pe);
-
+    abstract IPersonaEndPoint bindPersonaEndpoint(PersonaEndPoint personaEndPoint);
 }
