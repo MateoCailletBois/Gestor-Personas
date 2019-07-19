@@ -16,14 +16,14 @@ public class GestorPersona implements IGestorPersona {
         return personaEndPoint.getAll();
     }
 
-    public void guardar(PersonaDTO personaDTO) throws RuntimeException {
+    public PersonaDTO guardar(PersonaDTO personaDTO) throws RuntimeException {
         if (null == personaDTO.getId())
-            personaEndPoint.save(personaDTO);
+            return personaEndPoint.save(personaDTO);
         else
-            personaEndPoint.update(personaDTO);
+            return personaEndPoint.update(personaDTO);
     }
 
-    public void eliminar(PersonaDTO personaDTO) throws RuntimeException {
-        personaEndPoint.delete(personaDTO);
+    public PersonaDTO eliminar(PersonaDTO personaDTO) throws RuntimeException {
+        return personaEndPoint.delete(personaDTO);
     }
 }

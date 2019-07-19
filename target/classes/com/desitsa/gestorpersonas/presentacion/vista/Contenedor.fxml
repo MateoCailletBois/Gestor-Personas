@@ -2,5 +2,11 @@
 
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane fx:id="root" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desitsa.gestorpersonas.presentacion.vista.ContenedorController" />
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desitsa.gestorpersonas.presentacion.vista.ContenedorController">
+    <center>
+        <fx:include source="listado/Listado.fxml" />
+    </center>
+    <right>
+        <fx:include source="editor/Editor.fxml" />
+    </right>
+</BorderPane>

@@ -38,7 +38,10 @@ public class EditorController implements Initializable {
     private void guardar() {
         try {
             Mapper mapper = DozerBeanMapperBuilder.buildDefault();
-            gestorPersona.guardar(mapper.map(dataModel.getPersonaSeleccionada(), PersonaDTO.class));
+            Persona personaSeleccionada = dataModel.getPersonaSeleccionada();
+            Persona personaParaGuardar = new Persona((null == personaSeleccionada) ? null : personaSeleccionada.getId(), tfNombre.getText(), tfApellido.getText(), tfDni.getText());
+            gestorPersona.guardar(mapper.map(personaParaGuardar, PersonaDTO.class));
+            dataModel.guardarPersona(personaParaGuardar);
         } catch (Exception e) {
             e.printStackTrace();
         }

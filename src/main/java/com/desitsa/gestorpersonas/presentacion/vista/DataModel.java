@@ -17,16 +17,19 @@ public class DataModel {
     private final ObjectProperty<Persona> personaSeleccionada = new SimpleObjectProperty<>(null);
 
     @Inject
-    public DataModel() {
-
-    }
+    public DataModel() { }
 
     //******************************( METODOS PUBLICOS )******************************
     public void removerPersona(Persona persona) throws RuntimeException {
         listaPersonas.remove(persona);
     }
-    public void agregarPersona(Persona persona) throws RuntimeException {
-        listaPersonas.add(persona);
+
+    public void guardarPersona(Persona persona) throws RuntimeException {
+        Persona personaParaReemplazar = listaPersonas.stream().filter(p -> p.getId().equals(persona.getId())).findAny().orElse(null);
+        if (null == personaParaReemplazar)
+            listaPersonas.add(persona);
+        else
+            listaPersonas.set(listaPersonas.indexOf(personaParaReemplazar), persona);
     }
 
     //******************************( GETTER )******************************

@@ -14,7 +14,6 @@ import com.desitsa.gestorpersonas.presentacion.vista.editor.EditorController;
 import com.desitsa.gestorpersonas.presentacion.vista.editor.EditorController_Factory;
 import com.desitsa.gestorpersonas.presentacion.vista.listado.ListadoController;
 import com.desitsa.gestorpersonas.presentacion.vista.listado.ListadoController_Factory;
-import dagger.internal.DelegateFactory;
 import dagger.internal.DoubleCheck;
 import dagger.internal.MapProviderFactory;
 import dagger.internal.Preconditions;
@@ -79,14 +78,14 @@ public final class DaggerAppComponente implements AppComponente {
     private Stage mainWindow;
 
     @Override
-    public FxAppComponenteBuilder application(Application arg0) {
-      this.application = Preconditions.checkNotNull(arg0);
+    public FxAppComponenteBuilder application(Application application) {
+      this.application = Preconditions.checkNotNull(application);
       return this;
     }
 
     @Override
-    public FxAppComponenteBuilder mainWindow(Stage arg0) {
-      this.mainWindow = Preconditions.checkNotNull(arg0);
+    public FxAppComponenteBuilder mainWindow(Stage mainWindow) {
+      this.mainWindow = Preconditions.checkNotNull(mainWindow);
       return this;
     }
 
@@ -99,10 +98,6 @@ public final class DaggerAppComponente implements AppComponente {
   }
 
   private final class FxAppComponenteImpl implements FxAppComponente {
-    private Provider<Function<URL, FXMLLoader>> provideFxmlLoaderFactoryProvider;
-
-    private Provider<ContenedorController> contenedorControllerProvider;
-
     private Provider<ListadoController> listadoControllerProvider;
 
     private Provider<EditorController> editorControllerProvider;
@@ -110,6 +105,8 @@ public final class DaggerAppComponente implements AppComponente {
     private Provider<Map<Class<?>, Provider<Object>>> mapOfClassOfAndProviderOfObjectProvider;
 
     private Provider<Callback<Class<?>, Object>> provideControllerFactoryProvider;
+
+    private Provider<Function<URL, FXMLLoader>> provideFxmlLoaderFactoryProvider;
 
     private FxAppComponenteImpl(FxAppModulo fxAppModuloParam, Application application,
         Stage mainWindow) {
@@ -120,13 +117,11 @@ public final class DaggerAppComponente implements AppComponente {
     @SuppressWarnings("unchecked")
     private void initialize(final FxAppModulo fxAppModuloParam, final Application application,
         final Stage mainWindow) {
-      this.provideFxmlLoaderFactoryProvider = new DelegateFactory<>();
-      this.contenedorControllerProvider = ContenedorController_Factory.create(provideFxmlLoaderFactoryProvider);
       this.listadoControllerProvider = ListadoController_Factory.create(DaggerAppComponente.this.dataModelProvider, (Provider) DaggerAppComponente.this.gestorPersonaProvider);
       this.editorControllerProvider = EditorController_Factory.create(DaggerAppComponente.this.dataModelProvider, (Provider) DaggerAppComponente.this.gestorPersonaProvider);
-      this.mapOfClassOfAndProviderOfObjectProvider = MapProviderFactory.<Class<?>, Object>builder(3).put(ContenedorController.class, (Provider) contenedorControllerProvider).put(ListadoController.class, (Provider) listadoControllerProvider).put(EditorController.class, (Provider) editorControllerProvider).build();
+      this.mapOfClassOfAndProviderOfObjectProvider = MapProviderFactory.<Class<?>, Object>builder(3).put(ContenedorController.class, (Provider) ContenedorController_Factory.create()).put(ListadoController.class, (Provider) listadoControllerProvider).put(EditorController.class, (Provider) editorControllerProvider).build();
       this.provideControllerFactoryProvider = DoubleCheck.provider(FxAppModulo_ProvideControllerFactoryFactory.create(fxAppModuloParam, mapOfClassOfAndProviderOfObjectProvider));
-      DelegateFactory.setDelegate(provideFxmlLoaderFactoryProvider, DoubleCheck.provider(FxAppModulo_ProvideFxmlLoaderFactoryFactory.create(fxAppModuloParam, provideControllerFactoryProvider)));
+      this.provideFxmlLoaderFactoryProvider = DoubleCheck.provider(FxAppModulo_ProvideFxmlLoaderFactoryFactory.create(fxAppModuloParam, provideControllerFactoryProvider));
     }
 
     @Override

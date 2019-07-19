@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IPersonaEndPoint {
     List<PersonaDTO> getAll();
-    void update(PersonaDTO personaActualizada);
-    void save(PersonaDTO persona);
-    void delete(PersonaDTO persona);
+    PersonaDTO update(PersonaDTO personaActualizada);
+    PersonaDTO save(PersonaDTO persona);
+    PersonaDTO delete(PersonaDTO persona);
 }

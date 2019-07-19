@@ -12,6 +12,13 @@ public class Persona {
 
     public Persona() {}
 
+    public Persona(String id, String nombre, String apellido, String dni) {
+        setId(id);
+        setNombre(nombre);
+        setApellido(apellido);
+        setDni(dni);
+    }
+
     //******************************( GETTER )******************************
     public String getId() { return id.get(); }
     public StringProperty idProperty() { return id; }
