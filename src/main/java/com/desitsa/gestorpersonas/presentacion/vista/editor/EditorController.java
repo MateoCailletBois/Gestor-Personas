@@ -6,8 +6,11 @@ import com.desitsa.gestorpersonas.presentacion.viewmodel.Persona;
 import com.desitsa.gestorpersonas.presentacion.vista.DataModel;
 import com.github.dozermapper.core.DozerBeanMapperBuilder;
 import com.github.dozermapper.core.Mapper;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import javax.inject.Inject;
@@ -19,6 +22,8 @@ public class EditorController implements Initializable {
     @FXML private TextField tfNombre;
     @FXML private TextField tfApellido;
     @FXML private TextField tfDni;
+    @FXML private Button btnGuardar;
+    @FXML private Button btnEliminar;
     private DataModel dataModel;
     private IGestorPersona gestorPersona;
 
@@ -60,6 +65,8 @@ public class EditorController implements Initializable {
     }
 
     private void bindDataModel() {
+        btnGuardar.disableProperty().bind(Bindings.isEmpty(tfNombre.textProperty()).or(Bindings.isEmpty(tfApellido.textProperty())).or(Bindings.isEmpty(tfDni.textProperty())));
+        btnEliminar.disableProperty().bind(Bindings.isNull(dataModel.personaSeleccionadaProperty()));
         dataModel.personaSeleccionadaProperty().addListener((obs, personaAnterior, personaActual) -> {
             if (personaActual == null) {
                 limpiarCampos();
