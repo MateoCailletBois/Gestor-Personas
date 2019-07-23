@@ -27,30 +27,21 @@ public class PersonaEndPoint implements IPersonaEndPoint {
     public PersonaDTO save(PersonaDTO persona) throws RuntimeException {
         persona.setId(++ultimoID);
         listaPersonas.add(persona);
-        imprimirBaseDeDatos("Save", persona);
+        imprimirBaseDeDatos("save", persona);
         return persona;
     }
 
-    public PersonaDTO update(PersonaDTO personaParaActualizada) throws RuntimeException {
-        PersonaDTO personaParaQuitar = null;
-        for (PersonaDTO persona : listaPersonas) {
-            if (persona.getId().equals(personaParaActualizada.getId()))
-                personaParaQuitar = persona;
-        }
-        listaPersonas.remove(personaParaQuitar);
-        listaPersonas.add(personaParaActualizada);
-        imprimirBaseDeDatos("Update", personaParaActualizada);
-        return personaParaActualizada;
+    public PersonaDTO update(PersonaDTO personaParaActualizar) throws RuntimeException {
+        PersonaDTO personaParaReemplazar = listaPersonas.stream().filter(p -> p.getId().equals(personaParaActualizar.getId())).findAny().orElse(null);
+        listaPersonas.set(listaPersonas.indexOf(personaParaReemplazar), personaParaActualizar);
+        imprimirBaseDeDatos("update", personaParaActualizar);
+        return personaParaActualizar;
     }
 
-    public PersonaDTO delete(PersonaDTO persona) throws RuntimeException {
-        PersonaDTO personaParaEliminar = null;
-        for (PersonaDTO p : listaPersonas) {
-            if (p.getId().equals(persona.getId()))
-                personaParaEliminar = p;
-        }
+    public PersonaDTO delete(int id) throws RuntimeException {
+        PersonaDTO personaParaEliminar = listaPersonas.stream().filter(p -> p.getId().equals(id)).findAny().orElse(null);
         listaPersonas.remove(personaParaEliminar);
-        imprimirBaseDeDatos("Delete", persona);
+        imprimirBaseDeDatos("delete id:" + id, null);
         return personaParaEliminar;
     }
 

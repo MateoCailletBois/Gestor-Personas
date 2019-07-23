@@ -57,7 +57,7 @@ public class EditorController implements Initializable {
         try {
             Mapper mapper = DozerBeanMapperBuilder.buildDefault();
             Persona personaActual = dataModel.getPersonaSeleccionada();
-            gestorPersona.eliminar(mapper.map(personaActual, PersonaDTO.class));
+            gestorPersona.eliminar(Integer.parseInt(personaActual.getId()));
             dataModel.removerPersona(personaActual);
         } catch (Exception e) {
             e.printStackTrace();

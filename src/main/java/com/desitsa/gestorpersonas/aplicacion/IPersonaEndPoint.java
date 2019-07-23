@@ -6,5 +6,5 @@ public interface IPersonaEndPoint {
     List<PersonaDTO> getAll();
     PersonaDTO update(PersonaDTO personaActualizada);
     PersonaDTO save(PersonaDTO persona);
-    PersonaDTO delete(PersonaDTO persona);
+    PersonaDTO delete(int id);
 }

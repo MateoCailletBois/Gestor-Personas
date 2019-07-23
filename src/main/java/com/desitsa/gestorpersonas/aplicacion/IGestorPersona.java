@@ -8,5 +8,5 @@ public interface IGestorPersona {
 
     PersonaDTO guardar(PersonaDTO personaDTO) throws RuntimeException;
 
-    PersonaDTO eliminar(PersonaDTO personaDTO) throws RuntimeException;
+    PersonaDTO eliminar(int id) throws RuntimeException;
 }

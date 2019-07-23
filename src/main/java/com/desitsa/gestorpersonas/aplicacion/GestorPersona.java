@@ -23,7 +23,7 @@ public class GestorPersona implements IGestorPersona {
             return personaEndPoint.update(personaDTO);
     }
 
-    public PersonaDTO eliminar(PersonaDTO personaDTO) throws RuntimeException {
-        return personaEndPoint.delete(personaDTO);
+    public PersonaDTO eliminar(int id) throws RuntimeException {
+        return personaEndPoint.delete(id);
     }
 }
